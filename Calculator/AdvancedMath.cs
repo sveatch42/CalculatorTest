@@ -10,7 +10,7 @@ namespace Calculator
 	//Main and only method.
         public static double SquareRoot(double value)
         {
-	    //This function looks like a cop out to me.
+	    //This function looks like a farse to me.
             return Math.Sqrt(value);
         }
     }

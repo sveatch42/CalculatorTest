@@ -21,7 +21,7 @@ namespace Calculator
     {
         public string CurrentResultDisplay { get; private set; }
 
-        private CalcEngine engine;
+        private CalcEngine calculatorEngine;
         private DisplayResult displayResult;
 
         public MainWindow()
@@ -31,13 +31,13 @@ namespace Calculator
             displayResult = new DisplayResult() { ResultText = "0" };
             this.DataContext = displayResult;
 
-            engine = new CalcEngine();
+            calculatorEngine = new CalcEngine();
         }
 
         private void buttonBackspace_Click(object sender, RoutedEventArgs e)
         {
-            engine.RemoveDigitFromCurrentValueText();
-            UpdateDisplay(engine.CurrentDisplayText);
+            calculatorEngine.RemoveDigitFromCurrentValueText();
+            UpdateDisplay(calculatorEngine.CurrentDisplayText);
         }
 
         private void UpdateDisplay(string updatedText)
@@ -47,15 +47,15 @@ namespace Calculator
 
         private void buttonCE_Click(object sender, RoutedEventArgs e)
         {
-            engine.ClearCurrentValue();
-            UpdateDisplay(engine.CurrentDisplayText);
+            calculatorEngine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.CurrentDisplayText);
         }
 
         private void buttonC_Click(object sender, RoutedEventArgs e)
         {
-            engine.ClearCurrentValue();
-            engine.ClearTotalValue();
-            UpdateDisplay(engine.CurrentDisplayText);
+            calculatorEngine.ClearCurrentValue();
+            calculatorEngine.ClearTotalValue();
+            UpdateDisplay(calculatorEngine.CurrentDisplayText);
         }
 
         private void buttonDigit_Click(object sender, RoutedEventArgs e)
@@ -64,54 +64,54 @@ namespace Calculator
 
             if (digitButton != null)
             {
-                engine.AddDigitToCurrentValueText(digitButton.Content.ToString());
-                UpdateDisplay(engine.CurrentDisplayText);
+                calculatorEngine.AddDigitToCurrentValueText(digitButton.Content.ToString());
+                UpdateDisplay(calculatorEngine.CurrentDisplayText);
             }
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            engine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Add));
+            calculatorEngine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Add));
  
-            UpdateDisplay(engine.TotalValueText);
-            engine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.TotalValueText);
+            calculatorEngine.ClearCurrentValue();
         }
 
         private void buttonSubtract_Click(object sender, RoutedEventArgs e)
         {
-            engine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Subtract));
+            calculatorEngine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Subtract));
 
-            UpdateDisplay(engine.TotalValueText);
-            engine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.TotalValueText);
+            calculatorEngine.ClearCurrentValue();
         }
 
         private void buttonMultiple_Click(object sender, RoutedEventArgs e)
         {
-            engine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Multiple));
+            calculatorEngine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Multiple));
 
-            UpdateDisplay(engine.TotalValueText);
-            engine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.TotalValueText);
+            calculatorEngine.ClearCurrentValue();
         }
 
         private void buttonDivide_Click(object sender, RoutedEventArgs e)
         {
-            engine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Divide));
+            calculatorEngine.UpdateTotalValue(new CalcEngine.UpdateTotalHandler(SimpleMath.Divide));
 
-            UpdateDisplay(engine.TotalValueText);
-            engine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.TotalValueText);
+            calculatorEngine.ClearCurrentValue();
         }
 
         private void buttonEquals_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDisplay(engine.TotalValueText);
-            engine.ClearCurrentValue();
+            UpdateDisplay(calculatorEngine.TotalValueText);
+            calculatorEngine.ClearCurrentValue();
         }
 
         private void buttonSqrt_Click(object sender, RoutedEventArgs e)
         {
-            engine.UpdateCurrentValue(new CalcEngine.UpdateCurrentValueHandler(AdvancedMath.SquareRoot));
+            calculatorEngine.UpdateCurrentValue(new CalcEngine.UpdateCurrentValueHandler(AdvancedMath.SquareRoot));
 
-            UpdateDisplay(engine.CurrentDisplayText);
+            UpdateDisplay(calculatorEngine.CurrentDisplayText);
             
         }
 
