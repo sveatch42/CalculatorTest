@@ -7,13 +7,13 @@ namespace Calculator
 {
     class CalcEngine
     {
-        private StringBuilder valueTextBuilder;
+        private StringBuilder valueStringBuilder;
         public string CurrentDisplayText 
         {
             get
             {
-                if (valueTextBuilder.Length > 0)
-                    return valueTextBuilder.ToString();
+                if (valueStringBuilder.Length > 0)
+                    return valueStringBuilder.ToString();
                 else
                     return "0";
             }
@@ -31,23 +31,23 @@ namespace Calculator
 
         public CalcEngine()
         {
-            valueTextBuilder = new StringBuilder("");
+            valueStringBuilder = new StringBuilder("");
         }
 
         public void AddDigitToCurrentValueText(string digit)
         {
-            valueTextBuilder.Append(digit);
+            valueStringBuilder.Append(digit);
         }
 
         public void RemoveDigitFromCurrentValueText()
         {
-            valueTextBuilder.Length = valueTextBuilder.Length - 1;
+            valueStringBuilder.Length = valueStringBuilder.Length - 1;
         }
 
         public void ClearCurrentValue()
         {
             currentValue = 0.0;
-            valueTextBuilder.Clear();            
+            valueStringBuilder.Clear();            
         }
 
         public void ClearTotalValue()
@@ -59,8 +59,8 @@ namespace Calculator
         {          
             currentValue = updateCurrentHandler(Double.Parse(CurrentDisplayText));
             
-            valueTextBuilder.Clear();
-            valueTextBuilder.Append(currentValue.ToString());
+            valueStringBuilder.Clear();
+            valueStringBuilder.Append(currentValue.ToString());
         }
 
         public void UpdateTotalValue(UpdateTotalHandler updateHandler)
